@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <link rel="icon" type="image/png" href="icon-192.png">
+
+  <title>Viajes Silvia - David</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div id="splash">
+    <img src="FotoJuntos.png" id="splash-img" alt="Splash">
+  </div>
+
+  <script>
+    // Espera 3 segundos y redirige a home.html
+    setTimeout(() => {
+  document.getElementById('splash').style.opacity = 0;
+  setTimeout(() => window.location.href = "home.html", 500);
+}, 3000);
+
+  </script>
+</body>
+</html>

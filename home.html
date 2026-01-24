@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <link rel="icon" type="image/png" href="icon-192.png">
+  <title>Viajes Silvia - David</title>
+
+  <!-- Leaflet -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<nav id="navbar">
+  <ul>
+    <li><a href="home.html" class="active">Mapa</a></li>
+    <li><a href="gallery.html">Galería</a></li>
+  </ul>
+</nav>
+
+<div id="searchContainer">
+  <input type="text" id="searchInput" placeholder="Buscar lugares...">
+  <button id="searchBtn">🔍</button>
+  <button id="clearSearchBtn">✖</button>
+</div>
+
+
+  <div id="map"></div>
+
+  <!-- Leaflet -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- App -->
+ <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script type="module" src="js/app.js"></script>
+
+<div id="markerModal" class="modal">
+  <div class="modal-content">
+    <h3>📍 Añadir sitio</h3>
+    <label>
+      Título
+      <input type="text" id="markerTitle" placeholder="Nombre del lugar">
+    </label>
+    <label>
+      Observaciones
+      <textarea id="markerNotes" placeholder="Añade notas adicionales..."></textarea>
+    </label>
+    <div class="modal-buttons">
+      <button id="saveMarkerBtn" class="btn btn-save">💾 Guardar</button>
+      <button id="cancelMarkerBtn" class="btn btn-cancel">✖️ Cancelar</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>
