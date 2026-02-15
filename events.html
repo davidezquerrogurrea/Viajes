@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Viajes Silvia - David</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<nav id="navbar">
+  <ul>
+    <li><a href="home.html">Mapa</a></li>
+    <li><a href="gallery.html">Galeria</a></li>
+    <li><a href="events.html" class="active">Eventos</a></li>
+  </ul>
+</nav>
+
+<div id="eventsContainer">
+  <div id="eventsList"></div>
+</div>
+
+<button id="openEventModalBtn" class="floating-event-btn">+ Nuevo evento</button>
+
+<div id="eventModal" class="modal">
+  <div class="modal-content">
+    <h3>Agregar evento</h3>
+    <label>
+      Evento
+      <input type="text" id="eventTitle" placeholder="Nombre del evento">
+    </label>
+    <label>
+      Descripcion
+      <textarea id="eventDescription" placeholder="Anade detalles del evento..."></textarea>
+    </label>
+    <div class="modal-buttons">
+      <button id="saveEventBtn" class="btn btn-save">Guardar</button>
+      <button id="cancelEventBtn" class="btn btn-cancel">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script type="module" src="./js/events.js"></script>
+</body>
+</html>

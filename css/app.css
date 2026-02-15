@@ -752,3 +752,158 @@ body.splash-active {
     height: 60px;
   }
 }
+
+/* Contenedor principal de eventos */
+#eventsContainer {
+  min-height: calc(100vh - 60px);
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 24px 16px 120px;
+  box-sizing: border-box;
+}
+
+#eventsList {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  gap: 16px;
+}
+
+#eventsList:empty::before {
+  content: 'No hay eventos todavia';
+  display: block;
+  text-align: center;
+  padding: 48px 20px;
+  color: #667eea;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.event-item {
+  background: white;
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.event-item h3 {
+  margin: 0 0 8px 0;
+  color: #667eea;
+  font-size: 20px;
+  text-align: center;
+}
+
+.event-item p {
+  margin: 0;
+  color: #4d5562;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.event-item .photos {
+  margin-top: 14px;
+  margin-bottom: 12px;
+}
+
+.add-event-photos-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.add-event-photos-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.add-event-photos-btn:active {
+  transform: translateY(0);
+}
+
+.add-event-photos-btn:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.event-item-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-event-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #ff4757;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.delete-event-btn:hover {
+  background: #ee5a6f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.delete-event-btn:active {
+  transform: translateY(0);
+}
+
+.delete-event-btn:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.floating-event-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1100;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 26px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(102, 126, 234, 0.45);
+  transition: all 0.25s ease;
+}
+
+.floating-event-btn:hover {
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 14px 28px rgba(102, 126, 234, 0.5);
+}
+
+.floating-event-btn:active {
+  transform: translateX(-50%);
+}
+
+@media (max-width: 600px) {
+  #eventsContainer {
+    padding: 16px 12px 104px;
+  }
+
+  .floating-event-btn {
+    width: calc(100% - 24px);
+    border-radius: 12px;
+    bottom: 12px;
+  }
+}
