@@ -7,8 +7,14 @@ const saveEventBtn = document.getElementById('saveEventBtn');
 const cancelEventBtn = document.getElementById('cancelEventBtn');
 const eventTitleInput = document.getElementById('eventTitle');
 const eventDescriptionInput = document.getElementById('eventDescription');
+const eventModalTitle = eventModal.querySelector('.modal-content h3');
 const EVENT_PHOTOS_BUCKET = 'market-photos';
 const EVENT_PHOTOS_PREFIX = 'events';
+const CREATE_MODAL_TITLE = 'Agregar evento';
+const EDIT_MODAL_TITLE = 'Editar evento';
+const CREATE_SAVE_TEXT = 'Guardar';
+const EDIT_SAVE_TEXT = 'Guardar cambios';
+let editingEventId = null;
 
 function getEventPhotoFolder(eventId) {
   return `${EVENT_PHOTOS_PREFIX}/${eventId}`;
@@ -55,8 +61,29 @@ function openModal() {
 
 function closeModal() {
   eventModal.style.display = 'none';
+  editingEventId = null;
+  eventModalTitle.textContent = CREATE_MODAL_TITLE;
+  saveEventBtn.textContent = CREATE_SAVE_TEXT;
   eventTitleInput.value = '';
   eventDescriptionInput.value = '';
+}
+
+function startCreateEvent() {
+  editingEventId = null;
+  eventModalTitle.textContent = CREATE_MODAL_TITLE;
+  saveEventBtn.textContent = CREATE_SAVE_TEXT;
+  eventTitleInput.value = '';
+  eventDescriptionInput.value = '';
+  openModal();
+}
+
+function startEditEvent(row) {
+  editingEventId = row.id;
+  eventModalTitle.textContent = EDIT_MODAL_TITLE;
+  saveEventBtn.textContent = EDIT_SAVE_TEXT;
+  eventTitleInput.value = row.title || '';
+  eventDescriptionInput.value = row.description || '';
+  openModal();
 }
 
 async function renderEvents(rows) {
@@ -134,9 +161,17 @@ async function renderEvents(rows) {
       deleteEvent(row.id, deleteEventBtn);
     });
 
+    const editEventBtn = document.createElement('button');
+    editEventBtn.className = 'edit-event-btn';
+    editEventBtn.textContent = '\u270F\uFE0F Editar';
+    editEventBtn.addEventListener('click', () => {
+      startEditEvent(row);
+    });
+
     const actions = document.createElement('div');
     actions.className = 'event-item-actions';
     actions.appendChild(addPhotosBtn);
+    actions.appendChild(editEventBtn);
     actions.appendChild(deleteEventBtn);
 
     eventCard.appendChild(title);
@@ -453,6 +488,7 @@ async function loadEvents() {
 async function saveEvent() {
   const title = eventTitleInput.value.trim();
   const description = eventDescriptionInput.value.trim();
+  const isEditing = editingEventId !== null;
 
   if (!title) {
     alert('El evento es obligatorio');
@@ -461,18 +497,31 @@ async function saveEvent() {
   }
 
   saveEventBtn.disabled = true;
-  saveEventBtn.textContent = 'Guardando...';
+  saveEventBtn.textContent = isEditing ? 'Guardando cambios...' : 'Guardando...';
+  let error = null;
 
-  const { error } = await supabaseClient
-    .from('events')
-    .insert([{ title, description }]);
+  if (isEditing) {
+    ({ error } = await supabaseClient
+      .from('events')
+      .update({ title, description })
+      .eq('id', editingEventId));
+  } else {
+    ({ error } = await supabaseClient
+      .from('events')
+      .insert([{ title, description }]));
+  }
 
   saveEventBtn.disabled = false;
-  saveEventBtn.textContent = 'Guardar';
+  saveEventBtn.textContent = isEditing ? EDIT_SAVE_TEXT : CREATE_SAVE_TEXT;
 
   if (error) {
-    console.error('Error guardando evento:', error);
-    alert('No se pudo guardar el evento en Supabase.');
+    if (isEditing) {
+      console.error('Error actualizando evento:', error);
+      alert('No se pudo actualizar el evento en Supabase.');
+    } else {
+      console.error('Error guardando evento:', error);
+      alert('No se pudo guardar el evento en Supabase.');
+    }
     return;
   }
 
@@ -480,7 +529,7 @@ async function saveEvent() {
   await loadEvents();
 }
 
-openEventModalBtn.addEventListener('click', openModal);
+openEventModalBtn.addEventListener('click', startCreateEvent);
 cancelEventBtn.addEventListener('click', closeModal);
 saveEventBtn.addEventListener('click', saveEvent);
 
