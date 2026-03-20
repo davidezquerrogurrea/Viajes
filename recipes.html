@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Viajes Silvia - David</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<nav id="navbar">
+  <ul>
+    <li><a href="home.html">Mapa</a></li>
+    <li><a href="gallery.html">Galeria</a></li>
+    <li><a href="events.html">Eventos</a></li>
+    <li><a href="watchlist.html">Pelis/Series</a></li>
+    <li><a href="recipes.html" class="active">Recetas</a></li>
+  </ul>
+</nav>
+
+<div id="recipesContainer">
+  <div class="filter-bar" id="recipeFilters">
+    <input type="text" id="recipeSearch" placeholder="Buscar por titulo, tipo o ingredientes">
+    <select id="recipeTypeFilter">
+      <option value="all">Todos los tipos</option>
+      <option value="Desayuno">Desayuno</option>
+      <option value="Comida">Comida</option>
+      <option value="Cena">Cena</option>
+      <option value="Postre">Postre</option>
+      <option value="Snack">Snack</option>
+    </select>
+    <select id="recipeDifficultyFilter">
+      <option value="all">Todas las dificultades</option>
+      <option value="Facil">Facil</option>
+      <option value="Media">Media</option>
+      <option value="Dificil">Dificil</option>
+    </select>
+    <select id="recipeStatusFilter">
+      <option value="all">Todos los estados</option>
+      <option value="Pendiente">Pendiente</option>
+      <option value="Hecha">Hecha</option>
+    </select>
+  </div>
+
+  <div id="recipesList"></div>
+</div>
+
+<button id="openRecipeModalBtn" class="floating-action-btn">+ Nueva receta</button>
+
+<div id="recipeModal" class="modal">
+  <div class="modal-content">
+    <h3>Agregar receta</h3>
+    <label>
+      Titulo
+      <input type="text" id="recipeTitle" placeholder="Nombre de la receta">
+    </label>
+    <label>
+      Tipo
+      <select id="recipeType">
+        <option value="Desayuno">Desayuno</option>
+        <option value="Comida">Comida</option>
+        <option value="Cena">Cena</option>
+        <option value="Postre">Postre</option>
+        <option value="Snack">Snack</option>
+      </select>
+    </label>
+    <label>
+      Dificultad
+      <select id="recipeDifficulty">
+        <option value="Facil">Facil</option>
+        <option value="Media">Media</option>
+        <option value="Dificil">Dificil</option>
+      </select>
+    </label>
+    <label>
+      Tiempo (min)
+      <input type="number" id="recipeTime" min="0" placeholder="30">
+    </label>
+    <label>
+      Estado
+      <select id="recipeStatus">
+        <option value="Pendiente">Pendiente</option>
+        <option value="Hecha">Hecha</option>
+      </select>
+    </label>
+    <label>
+      Ingredientes
+      <textarea id="recipeIngredients" placeholder="Lista de ingredientes..."></textarea>
+    </label>
+    <label>
+      Instrucciones
+      <textarea id="recipeInstructions" placeholder="Pasos para preparar la receta..."></textarea>
+    </label>
+    <label>
+      Link
+      <input type="text" id="recipeLink" placeholder="https://... (opcional)">
+    </label>
+    <div class="modal-buttons">
+      <button id="saveRecipeBtn" class="btn btn-save">Guardar</button>
+      <button id="cancelRecipeBtn" class="btn btn-cancel">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script type="module" src="./js/recipes.js"></script>
+</body>
+</html>

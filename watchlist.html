@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Viajes Silvia - David</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<nav id="navbar">
+  <ul>
+    <li><a href="home.html">Mapa</a></li>
+    <li><a href="gallery.html">Galeria</a></li>
+    <li><a href="events.html">Eventos</a></li>
+    <li><a href="watchlist.html" class="active">Pelis/Series</a></li>
+    <li><a href="recipes.html">Recetas</a></li>
+  </ul>
+</nav>
+
+<div id="watchlistContainer">
+  <div class="filter-bar" id="watchlistFilters">
+    <input type="text" id="watchlistSearch" placeholder="Buscar por titulo, plataforma o notas">
+    <select id="watchlistTypeFilter">
+      <option value="all">Todas</option>
+      <option value="Pelicula">Pelicula</option>
+      <option value="Serie">Serie</option>
+    </select>
+    <select id="watchlistStatusFilter">
+      <option value="all">Todos los estados</option>
+      <option value="Pendiente">Pendiente</option>
+      <option value="Viendo">Viendo</option>
+      <option value="Vista">Vista</option>
+    </select>
+  </div>
+
+  <div id="watchlistList"></div>
+</div>
+
+<button id="openWatchlistModalBtn" class="floating-action-btn">+ Nueva peli/serie</button>
+
+<div id="watchlistModal" class="modal">
+  <div class="modal-content">
+    <h3>Agregar peli/serie</h3>
+    <label>
+      Titulo
+      <input type="text" id="watchlistTitle" placeholder="Nombre de la peli o serie">
+    </label>
+    <label>
+      Tipo
+      <select id="watchlistType">
+        <option value="Pelicula">Pelicula</option>
+        <option value="Serie">Serie</option>
+      </select>
+    </label>
+    <label>
+      Estado
+      <select id="watchlistStatus">
+        <option value="Pendiente">Pendiente</option>
+        <option value="Viendo">Viendo</option>
+        <option value="Vista">Vista</option>
+      </select>
+    </label>
+    <label>
+      Plataforma
+      <input type="text" id="watchlistPlatform" placeholder="Netflix, HBO, Disney+, etc.">
+    </label>
+    <label>
+      Notas
+      <textarea id="watchlistNotes" placeholder="Por que la queremos ver, con quien, etc."></textarea>
+    </label>
+    <div class="modal-buttons">
+      <button id="saveWatchlistBtn" class="btn btn-save">Guardar</button>
+      <button id="cancelWatchlistBtn" class="btn btn-cancel">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script type="module" src="./js/watchlist.js"></script>
+</body>
+</html>

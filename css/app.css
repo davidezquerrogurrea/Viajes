@@ -1,4 +1,4 @@
-html, body {
+﻿html, body {
   margin: 0;  
   height: 100%;
 }
@@ -41,6 +41,8 @@ html, body {
   border-radius: 16px;
   width: calc(100% - 40px);
   max-width: 450px;
+  max-height: 75vh;
+  overflow-y: auto;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   animation: slideIn 0.3s ease;
   color: white;
@@ -76,7 +78,9 @@ html, body {
 }
 
 .modal-content input[type="text"],
-.modal-content textarea {
+.modal-content input[type="number"],
+.modal-content textarea,
+.modal-content select {
   width: 100%;
   padding: 12px 16px;
   margin-top: 8px;
@@ -92,7 +96,9 @@ html, body {
 }
 
 .modal-content input[type="text"]:focus,
-.modal-content textarea:focus {
+.modal-content input[type="number"]:focus,
+.modal-content textarea:focus,
+.modal-content select:focus {
   outline: none;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
@@ -151,16 +157,17 @@ html, body {
   transform: translateY(0);
 }
 
-/* Media query para móviles */
+/* Media query para mÃ³viles */
 @media (max-width: 480px) {
   .modal {
     padding: 10px 0; /* Menos padding vertical */
   }
 
   .modal-content {
-    width: calc(100% - 20px); /* Aún menos margen en móviles pequeños */
+    width: calc(100% - 20px); /* AÃºn menos margen en mÃ³viles pequeÃ±os */
     margin: 10px auto;
     padding: 20px;
+    max-height: 70vh;
   }
 
   .modal-content h3 {
@@ -178,7 +185,7 @@ html, body {
   }
 }
 
-/* Barra de búsqueda con el mismo estilo de las modales */
+/* Barra de bÃºsqueda con el mismo estilo de las modales */
 #searchContainer {
   position: absolute;
   top: 70px;
@@ -226,7 +233,7 @@ html, body {
   font-weight: 600;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  min-width: 44px; /* Tamaño mínimo para táctil */
+  min-width: 44px; /* TamaÃ±o mÃ­nimo para tÃ¡ctil */
 }
 
 #searchContainer button:hover {
@@ -264,9 +271,10 @@ html, body {
   padding: 20px 0;
 }
 
-/* Responsive para la barra de búsqueda */
+/* Responsive para la barra de bÃºsqueda */
 @media (max-width: 600px) {
   #searchContainer {
+    top: 110px;
     width: calc(100% - 40px);
     left: 50%;
     transform: translateX(-50%);
@@ -289,6 +297,7 @@ html, body {
 
 @media (max-width: 400px) {
   #searchContainer {
+    top: 120px;
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -321,6 +330,8 @@ html, body {
   list-style: none;
   display: flex;
   gap: 12px;
+  row-gap: 8px;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -380,7 +391,7 @@ html, body {
   }
 }
 
-/* Contenedor principal de la galería */
+/* Contenedor principal de la galerÃ­a */
 #galleryContainer {
   min-height: calc(100vh - 60px); /* Resta la altura del navbar */
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
@@ -447,19 +458,19 @@ html, body {
 
 .photos img:only-child {
   grid-column: 1 / -1;
-  height: 300px; /* Aún más grande si es la única foto */
+  height: 300px; /* AÃºn mÃ¡s grande si es la Ãºnica foto */
   max-width: 100%;
 }
 
 
 /* Si no hay fotos */
 .gallery-item .photos:empty::before {
-  content: '📷 Sin fotos';
+  content: 'ðŸ“· Sin fotos';
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 220px; /* Ajustado también */
+  height: 220px; /* Ajustado tambiÃ©n */
   background: linear-gradient(135deg, #f5f7fa 0%, #e8edf5 100%);
   border-radius: 12px;
   color: #999;
@@ -467,7 +478,7 @@ html, body {
   font-weight: 500;
 }
 
-/* Botones de la galería */
+/* Botones de la galerÃ­a */
 .gallery-item button {
   padding: 10px 20px;
   border: none;
@@ -510,7 +521,7 @@ html, body {
   border-radius: 12px;
 }
 
-/* Responsive para galería */
+/* Responsive para galerÃ­a */
 @media (max-width: 768px) {
   #galleryContainer {
     padding: 20px 12px;
@@ -584,9 +595,9 @@ html, body {
   }
 }
 
-/* Estado vacío de la galería */
+/* Estado vacÃ­o de la galerÃ­a */
 #galleryContent:empty::before {
-  content: '📍 No hay lugares guardados aún';
+  content: 'ðŸ“ No hay lugares guardados aÃºn';
   display: block;
   text-align: center;
   padding: 60px 20px;
@@ -650,15 +661,15 @@ body.splash-active {
 }
 
 .leaflet-bottom {
-  bottom: 20px !important; /* Separación del borde inferior */
+  bottom: 20px !important; /* SeparaciÃ³n del borde inferior */
 }
 
 .leaflet-left {
-  left: 20px !important; /* Separación del borde izquierdo */
+  left: 20px !important; /* SeparaciÃ³n del borde izquierdo */
 }
 
 .leaflet-right {
-  right: 20px !important; /* Separación del borde derecho */
+  right: 20px !important; /* SeparaciÃ³n del borde derecho */
 }
 
 .leaflet-popup-content{
@@ -702,7 +713,7 @@ body.splash-active {
   overflow-x: auto;
   padding-bottom: 6px;
 
-  /* 👇 CLAVE: solo caben 4 */
+  /* ðŸ‘‡ CLAVE: solo caben 4 */
   max-width: calc((70px * 4) + (10px * 3));
   margin: 0 auto;
 
@@ -936,3 +947,298 @@ body.splash-active {
     bottom: 12px;
   }
 }
+
+/* ===== Watchlist & Recetas ===== */
+#watchlistContainer,
+#recipesContainer {
+  min-height: calc(100vh - 60px);
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 24px 16px 120px;
+  box-sizing: border-box;
+}
+
+.page-header {
+  max-width: 1000px;
+  margin: 0 auto 20px;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: #667eea;
+  text-align: center;
+}
+
+.page-subtitle {
+  margin: 6px auto 0;
+  max-width: 720px;
+  color: #4d5562;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.filter-bar {
+  max-width: 1000px;
+  margin: 0 auto 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: white;
+  padding: 12px 14px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.filter-bar input,
+.filter-bar select {
+  flex: 1 1 160px;
+  padding: 10px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: white;
+  box-sizing: border-box;
+}
+
+.filter-bar input:focus,
+.filter-bar select:focus {
+  outline: none;
+  border-color: rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+#watchlistList,
+#recipesList {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  gap: 16px;
+}
+
+.list-card {
+  background: white;
+  border-radius: 16px;
+  padding: 18px 20px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.card-title {
+  margin: 0;
+  color: #667eea;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #eef1ff;
+  color: #4c5ad1;
+}
+
+.tag.platform {
+  background: #f3f5f9;
+  color: #4d5562;
+}
+
+.tag.status-pendiente {
+  background: #fff3cd;
+  color: #8a6d3b;
+}
+
+.tag.status-viendo {
+  background: #dbe9ff;
+  color: #1f5ea8;
+}
+
+.tag.status-vista,
+.tag.status-hecha {
+  background: #d4edda;
+  color: #1f6f43;
+}
+
+.tag.status-default {
+  background: #e9ecef;
+  color: #495057;
+}
+
+.card-notes {
+  margin: 0;
+  color: #4d5562;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.card-section {
+  display: grid;
+  gap: 6px;
+}
+
+.card-section-title {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: #667eea;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.card-section-content {
+  margin: 0;
+  color: #4d5562;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.card-link {
+  color: #4c5ad1;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.card-action-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.card-action-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.card-action-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.card-action-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.card-action-edit {
+  background: #ffb347;
+  color: #2f2f2f;
+}
+
+.card-action-edit:hover {
+  background: #ffa93a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 169, 58, 0.35);
+}
+
+.card-action-danger {
+  background: #ff4757;
+  color: white;
+}
+
+.card-action-danger:hover {
+  background: #ee5a6f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-action-btn:active {
+  transform: translateY(0);
+}
+
+#watchlistList:empty::before {
+  content: 'No hay peliculas o series aun';
+  display: block;
+  text-align: center;
+  padding: 48px 20px;
+  color: #667eea;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+#recipesList:empty::before {
+  content: 'No hay recetas aun';
+  display: block;
+  text-align: center;
+  padding: 48px 20px;
+  color: #667eea;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.floating-action-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1100;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 26px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(102, 126, 234, 0.45);
+  transition: all 0.25s ease;
+}
+
+.floating-action-btn:hover {
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 14px 28px rgba(102, 126, 234, 0.5);
+}
+
+.floating-action-btn:active {
+  transform: translateX(-50%);
+}
+
+@media (max-width: 600px) {
+  #watchlistContainer,
+  #recipesContainer {
+    padding: 16px 12px 104px;
+  }
+
+  .floating-action-btn {
+    width: calc(100% - 24px);
+    border-radius: 12px;
+    bottom: 12px;
+  }
+}
+
